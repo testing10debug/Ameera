@@ -8,6 +8,7 @@ function blowKiss() {
   const randomX = Math.random() * window.innerWidth;
   const randomY = Math.random() * window.innerHeight;
   
+  // Set the position of the emoji
   kissElement.style.left = `${randomX}px`;
   kissElement.style.top = `${randomY}px`;
   
