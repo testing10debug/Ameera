@@ -1,23 +1,28 @@
-import React, { useState } from 'react';
-import './App.css';
-
-function App() {
-  const [showKiss, setShowKiss] = useState(false);
-
-  const handleClick = () => {
-    setShowKiss(true);
-    new Audio('https://www.soundjay.com/button/beep-07.wav').play(); // sound effect on button click
-    setTimeout(() => setShowKiss(false), 1500); // Hide the kiss after 1.5 seconds
-  };
-
-  return (
-    <div className="app">
-      <button className="kiss-button" onClick={handleClick}>
-        Blow a Kiss 💋
-      </button>
-      {showKiss && <div className="kiss-animation">💋</div>}
-    </div>
-  );
+function blowKiss() {
+  const kissElement = document.getElementById('kissAnimation');
+  
+  // Set the emoji to 😘
+  kissElement.innerHTML = '😘';
+  
+  // Randomize the position of the emoji
+  const randomX = Math.random() * window.innerWidth;
+  const randomY = Math.random() * window.innerHeight;
+  
+  kissElement.style.left = `${randomX}px`;
+  kissElement.style.top = `${randomY}px`;
+  
+  // Make the emoji visible and start animation
+  kissElement.style.visibility = 'visible';
+  kissElement.style.animation = 'blowKiss 1.5s ease forwards, floatKiss 2s ease-in-out infinite';
+  
+  // Play sound effect when the button is clicked
+  const sound = new Audio('https://www.soundjay.com/button/beep-07.wav');
+  sound.play();
+  
+  // Hide the emoji after animation ends
+  setTimeout(() => {
+    kissElement.innerHTML = '';
+    kissElement.style.visibility = 'hidden';  // Hide the emoji again
+    kissElement.style.animation = '';
+  }, 1500); // Animation duration
 }
-
-export default App;
